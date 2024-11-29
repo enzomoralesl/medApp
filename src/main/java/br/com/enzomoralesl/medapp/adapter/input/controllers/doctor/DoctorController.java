@@ -19,7 +19,7 @@ import java.net.URI;
 public class DoctorController implements DoctorSwagger {
 
     @Value("${urlbase}")
-    private String urlbase;
+   private String urlBase;
     private static final Logger LOGGER = LoggerFactory.getLogger(DoctorController.class);
 
     private final ICreateDoctorUseCases createDoctorUseCase;
@@ -36,7 +36,7 @@ public class DoctorController implements DoctorSwagger {
         DoctorResponse response = createDoctorUseCase.save(request);
         LOGGER.info("Doutor criado com sucesso!");
 
-        URI uri = uriBuilder.path("urlbase" + "/v1/{id}").buildAndExpand(response.id()).toUri();
+        URI uri = uriBuilder.path(urlBase + "/v1/{id}").buildAndExpand(response.id()).toUri();
 
         return ResponseEntity.created(uri).body(response);
     }
