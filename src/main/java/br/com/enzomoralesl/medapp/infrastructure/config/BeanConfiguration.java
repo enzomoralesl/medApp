@@ -6,7 +6,7 @@ import br.com.enzomoralesl.medapp.application.services.CreateDoctorUseCases;
 import br.com.enzomoralesl.medapp.application.usecases.ICreateDoctorUseCases;
 import br.com.enzomoralesl.medapp.domain.doctor.IDoctorRepository;
 import br.com.enzomoralesl.medapp.utils.IDoctorMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
     @Bean
-    ICreateDoctorUseCases createDoctorUseCase(IDoctorRepository repository, @Autowired IDoctorMapper mapper) {
+    ICreateDoctorUseCases createDoctorUseCase(IDoctorRepository repository, @Qualifier("IDoctorMapperImpl") IDoctorMapper mapper) {
         return new CreateDoctorUseCases(repository, mapper);
     }
 
