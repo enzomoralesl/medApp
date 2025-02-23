@@ -6,6 +6,7 @@ import br.com.enzomoralesl.medapp.adapter.input.controllers.doctor.model.DoctorR
 import br.com.enzomoralesl.medapp.application.usecases.ICreateDoctorUseCases;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ import java.net.URI;
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class DoctorController implements DoctorSwagger {
 
-//    @Value("${url.base}")
-//    private String urlbase;
+    @Value("${urlbase}")
+   private String urlBase;
     private static final Logger LOGGER = LoggerFactory.getLogger(DoctorController.class);
 
     private final ICreateDoctorUseCases createDoctorUseCase;
@@ -35,7 +36,7 @@ public class DoctorController implements DoctorSwagger {
         DoctorResponse response = createDoctorUseCase.save(request);
         LOGGER.info("Doutor criado com sucesso!");
 
-        URI uri = uriBuilder.path("urlbase" + "/v1/{id}").buildAndExpand(response.id()).toUri();
+        URI uri = uriBuilder.path(urlBase + "/v1/{id}").buildAndExpand(response.id()).toUri();
 
         return ResponseEntity.created(uri).body(response);
     }
