@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Map;
 
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DoctorController implements DoctorSwagger {
 
     @Value("${urlbase}")
-   private String urlBase;
+    private String urlBase;
     private static final Logger LOGGER = LoggerFactory.getLogger(DoctorController.class);
 
     private final ICreateDoctorUseCases createDoctorUseCase;
@@ -29,7 +30,7 @@ public class DoctorController implements DoctorSwagger {
     }
 
     @Override
-    @PostMapping(value = "/v1/doctor")
+    @PostMapping(value = "/doctor")
     public ResponseEntity<DoctorResponse> createDoctor(@RequestBody DoctorRequest request, UriComponentsBuilder uriBuilder) {
 
         LOGGER.info("Recebendo operacao para criar Doutor na base de dados...");
@@ -41,9 +42,14 @@ public class DoctorController implements DoctorSwagger {
         return ResponseEntity.created(uri).body(response);
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "Application is running";
+    @Override
+    @GetMapping("/doctor")
+    public ResponseEntity<DoctorResponse> fetchDoctor(@RequestHeader String crm) {
+
+        Map<String, Object> requestMap = Map.of(
+                "crm", crm
+        );
+        return ResponseEntity.ok(new DoctorResponse(null, "Enzo", "Cardiologista", "123456"));
     }
 
 }
