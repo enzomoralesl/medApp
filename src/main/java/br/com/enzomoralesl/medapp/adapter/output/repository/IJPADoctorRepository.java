@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IJPADoctorRepository extends JpaRepository<JpaDoctorEntity, UUID> {
 
+    JpaDoctorEntity findByCrm(String crm);
 }
