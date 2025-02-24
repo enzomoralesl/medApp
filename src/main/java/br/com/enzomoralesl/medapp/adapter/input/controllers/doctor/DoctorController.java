@@ -4,6 +4,7 @@ package br.com.enzomoralesl.medapp.adapter.input.controllers.doctor;
 import br.com.enzomoralesl.medapp.adapter.input.controllers.doctor.model.DoctorRequest;
 import br.com.enzomoralesl.medapp.adapter.input.controllers.doctor.model.DoctorResponse;
 import br.com.enzomoralesl.medapp.application.usecases.IDoctorUseCases;
+import br.com.enzomoralesl.medapp.infrastructure.config.exception.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,7 +46,7 @@ public class DoctorController implements DoctorSwagger {
 
     @Override
     @GetMapping("/doctor")
-    public ResponseEntity<DoctorResponse> fetchDoctor(@RequestHeader String crm) {
+    public ResponseEntity<DoctorResponse> fetchDoctor(@RequestHeader String crm) throws ResourceNotFoundException {
 
         LOGGER.info("Recebendo operacao para buscar Doutor na base de dados...");
         Map<String, String> requestMap = Map.of(
