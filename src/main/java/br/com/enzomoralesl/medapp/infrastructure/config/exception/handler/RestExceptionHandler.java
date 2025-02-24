@@ -1,9 +1,11 @@
 package br.com.enzomoralesl.medapp.infrastructure.config.exception.handler;
 
 import br.com.enzomoralesl.medapp.infrastructure.config.exception.APIErrorResponse;
+import br.com.enzomoralesl.medapp.infrastructure.config.exception.ResourceNotFoundException;
 import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingRequestHeaderException;
@@ -20,7 +22,8 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    public static final String HEADER_REQUIRED = "Header de entrada obrigatório";
+    public static final String ERROR_HEADER_REQUIRED = "Header de entrada obrigatório";
+    public static final String ERROR_CRM_DUPLICATED = "CRM já cadastrado";
     private static final Logger LOGGER_TECNICO = LoggerFactory.getLogger(RestExceptionHandler.class);
 
     @ExceptionHandler(FeignException.class)
@@ -32,7 +35,17 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler(MissingRequestHeaderException.class)
     public ResponseEntity<Object> handleMissingRequestHeaderException(MissingRequestHeaderException ex) {
-        return buildAPIResponseError(new APIErrorResponse(BAD_REQUEST, HEADER_REQUIRED, ex), ex);
+        return buildAPIResponseError(new APIErrorResponse(BAD_REQUEST, ERROR_HEADER_REQUIRED, ex), ex);
+    }
+    
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_CRM_DUPLICATED, ex), ex);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        return buildAPIResponseError(new APIErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), ex), ex);
     }
 
     @ExceptionHandler(Exception.class)

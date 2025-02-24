@@ -29,17 +29,11 @@ public class APIErrorResponse {
         timestamp = LocalDateTime.now();
     }
 
-    public APIErrorResponse(HttpStatus status) {
-        this();
-        this.status = status;
-        this.statusCode = status.value();
-    }
-
     public APIErrorResponse(HttpStatus status, Throwable ex) {
         this();
         this.status = status;
         this.statusCode = status.value();
-        this.message = "Erro inesperado: " + ex.getLocalizedMessage();
+        this.message = "Erro inesperado";
         this.errorDetails = ex.getLocalizedMessage();
     }
 
