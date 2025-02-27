@@ -1,4 +1,4 @@
-package br.com.enzomoralesl.medapp.adapter.output.repository.entities;
+package br.com.enzomoralesl.medapp.repository.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,8 +17,8 @@ public class JpaDoctorEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	private String crm;
 	private String name;
 	private String specialty;
-	private String crm;
 
 }

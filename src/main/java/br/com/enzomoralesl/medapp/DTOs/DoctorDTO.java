@@ -1,7 +1,7 @@
-package br.com.enzomoralesl.medapp.domain.doctor;
+package br.com.enzomoralesl.medapp.DTOs;
 
 
-import br.com.enzomoralesl.medapp.adapter.output.repository.entities.JpaDoctorEntity;
+import br.com.enzomoralesl.medapp.repository.entities.JpaDoctorEntity;
 
 import java.util.UUID;
 

@@ -1,7 +1,7 @@
-package br.com.enzomoralesl.medapp.infrastructure.config.exception.handler;
+package br.com.enzomoralesl.medapp.infrastructure.exception.handler;
 
-import br.com.enzomoralesl.medapp.infrastructure.config.exception.APIErrorResponse;
-import br.com.enzomoralesl.medapp.infrastructure.config.exception.ResourceNotFoundException;
+import br.com.enzomoralesl.medapp.infrastructure.exception.APIErrorResponse;
+import br.com.enzomoralesl.medapp.infrastructure.exception.ResourceNotFoundException;
 import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +24,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     public static final String ERROR_HEADER_REQUIRED = "Header de entrada obrigatório";
     public static final String ERROR_CRM_DUPLICATED = "CRM já cadastrado";
+    public static final String  ERROR_EMAIL_DUPLICATED = "Email já cadastrado";
+    public static final String ERROR_VALUE_DUPLICATED = "Existe algum valor já cadastrado";
+
+    public static final String ERROR_INTEGRITY_VIOLATION = "Erro de violação de integridade na base de dados";
     private static final Logger LOGGER_TECNICO = LoggerFactory.getLogger(RestExceptionHandler.class);
 
     @ExceptionHandler(FeignException.class)
@@ -40,7 +44,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
-        return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_CRM_DUPLICATED, ex), ex);
+        if(ex.getMessage().contains("duplicar valor da chave viola a restrição de unicidade")) {
+            if(ex.getMessage().contains("tb_patient_email_key"))
+                return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_EMAIL_DUPLICATED, ex), ex);
+            if(ex.getMessage().contains("tb_doctor_crm_key"))
+                return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_CRM_DUPLICATED, ex), ex);
+            return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_VALUE_DUPLICATED, ex), ex);
+        }
+        return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_INTEGRITY_VIOLATION, ex), ex);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

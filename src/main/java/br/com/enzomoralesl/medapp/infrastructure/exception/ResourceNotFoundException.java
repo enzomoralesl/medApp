@@ -1,4 +1,4 @@
-package br.com.enzomoralesl.medapp.infrastructure.config.exception;
+package br.com.enzomoralesl.medapp.infrastructure.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

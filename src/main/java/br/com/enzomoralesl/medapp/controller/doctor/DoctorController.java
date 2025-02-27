@@ -1,10 +1,10 @@
-package br.com.enzomoralesl.medapp.adapter.input.controllers.doctor;
+package br.com.enzomoralesl.medapp.controller.doctor;
 
 
-import br.com.enzomoralesl.medapp.adapter.input.controllers.doctor.model.DoctorRequest;
-import br.com.enzomoralesl.medapp.adapter.input.controllers.doctor.model.DoctorResponse;
-import br.com.enzomoralesl.medapp.application.usecases.IDoctorUseCases;
-import br.com.enzomoralesl.medapp.infrastructure.config.exception.ResourceNotFoundException;
+import br.com.enzomoralesl.medapp.controller.doctor.model.DoctorRequest;
+import br.com.enzomoralesl.medapp.controller.doctor.model.DoctorResponse;
+import br.com.enzomoralesl.medapp.service.IDoctorService;
+import br.com.enzomoralesl.medapp.infrastructure.exception.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,10 +24,10 @@ public class DoctorController implements DoctorSwagger {
     private String urlBase;
     private static final Logger LOGGER = LoggerFactory.getLogger(DoctorController.class);
 
-    private final IDoctorUseCases doctorUseCase;
+    private final IDoctorService doctorService;
 
-    public DoctorController(IDoctorUseCases doctorUseCase) {
-        this.doctorUseCase = doctorUseCase;
+    public DoctorController(IDoctorService doctorService) {
+        this.doctorService = doctorService;
     }
 
     @Override
@@ -35,8 +35,7 @@ public class DoctorController implements DoctorSwagger {
     public ResponseEntity<DoctorResponse> createDoctor(@RequestBody DoctorRequest request, UriComponentsBuilder uriBuilder) {
 
         LOGGER.info("Recebendo operacao para criar Doutor na base de dados...");
-        //TODO - Implementar validacao de existencia de request no BDD
-        DoctorResponse response = doctorUseCase.save(request);
+        DoctorResponse response = doctorService.save(request);
         LOGGER.info("Doutor criado com sucesso!");
 
         URI uri = uriBuilder.path(urlBase + "/v1/{id}").buildAndExpand(response.id()).toUri();
@@ -53,7 +52,7 @@ public class DoctorController implements DoctorSwagger {
                 "crm", crm
         );
 
-        return ResponseEntity.ok(doctorUseCase.fetch(requestMap));
+        return ResponseEntity.ok(doctorService.fetch(requestMap));
     }
 
 }

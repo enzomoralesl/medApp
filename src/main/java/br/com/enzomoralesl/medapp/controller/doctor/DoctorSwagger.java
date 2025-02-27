@@ -1,10 +1,10 @@
-package br.com.enzomoralesl.medapp.adapter.input.controllers.doctor;
+package br.com.enzomoralesl.medapp.controller.doctor;
 
 
-import br.com.enzomoralesl.medapp.adapter.input.controllers.doctor.model.DoctorRequest;
-import br.com.enzomoralesl.medapp.adapter.input.controllers.doctor.model.DoctorResponse;
-import br.com.enzomoralesl.medapp.infrastructure.config.exception.APIErrorResponse;
-import br.com.enzomoralesl.medapp.infrastructure.config.exception.ResourceNotFoundException;
+import br.com.enzomoralesl.medapp.controller.doctor.model.DoctorRequest;
+import br.com.enzomoralesl.medapp.controller.doctor.model.DoctorResponse;
+import br.com.enzomoralesl.medapp.infrastructure.exception.APIErrorResponse;
+import br.com.enzomoralesl.medapp.infrastructure.exception.ResourceNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

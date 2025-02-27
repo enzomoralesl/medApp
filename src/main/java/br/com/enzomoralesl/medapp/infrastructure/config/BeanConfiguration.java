@@ -1,11 +1,11 @@
+/*
 package br.com.enzomoralesl.medapp.infrastructure.config;
 
 import br.com.enzomoralesl.medapp.adapter.output.repository.DoctorRepository;
-import br.com.enzomoralesl.medapp.adapter.output.repository.IJPADoctorRepository;
-import br.com.enzomoralesl.medapp.application.services.DoctorUseCases;
-import br.com.enzomoralesl.medapp.application.usecases.IDoctorUseCases;
-import br.com.enzomoralesl.medapp.domain.doctor.IDoctorRepository;
-import br.com.enzomoralesl.medapp.utils.IDoctorMapper;
+import br.com.enzomoralesl.medapp.repository.IJPADoctorRepository;
+import br.com.enzomoralesl.medapp.service.DoctorService;
+import br.com.enzomoralesl.medapp.service.IDoctorService;
+import br.com.enzomoralesl.medapp.utils.mapper.IDoctorMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
     @Bean
-    IDoctorUseCases doctorUseCase(IDoctorRepository repository, @Qualifier("IDoctorMapperImpl") IDoctorMapper mapper) {
-        return new DoctorUseCases(repository, mapper);
+    IDoctorService doctorService(IDoctorRepository repository, @Qualifier("IDoctorMapperImpl") IDoctorMapper mapper) {
+        return new DoctorService(repository, mapper);
     }
 
     @Bean
@@ -25,3 +25,4 @@ public class BeanConfiguration {
         return new DoctorRepository(repository);
     }
 }
+*/

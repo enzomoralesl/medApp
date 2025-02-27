@@ -1,4 +1,4 @@
-package br.com.enzomoralesl.medapp.adapter.input.controllers.doctor.model;
+package br.com.enzomoralesl.medapp.controller.doctor.model;
 
 import java.util.UUID;
 
