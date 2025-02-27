@@ -14,8 +14,8 @@ import java.util.Map;
 @Service
 public class DoctorService implements IDoctorService {
 
-    public IJPADoctorRepository jpaDoctorRepository;
-    IDoctorMapper mapper;
+    private final IJPADoctorRepository jpaDoctorRepository;
+    private final IDoctorMapper mapper;
 
     public DoctorService(IJPADoctorRepository jpaDoctorRepository, @Qualifier("IDoctorMapperImpl") IDoctorMapper mapper) {
         this.jpaDoctorRepository = jpaDoctorRepository;

@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface IPatientMapper {
 
-    @Mapping(source = "medicalRecord", target = "medicalRecord")
+//    @Mapping(source = "medicalRecord", target = "medicalRecord")
     JpaPatientEntity toJpaPatientEntity(PatientRequest patientRequest);
 
     @Mapping(source = "teste", target = "teste")

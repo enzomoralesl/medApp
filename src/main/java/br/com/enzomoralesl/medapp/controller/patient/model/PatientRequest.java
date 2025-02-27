@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 public record PatientRequest(
         @NotNull @NotBlank String email,
         @NotNull @NotBlank String name,
-        MedicalRecordDTO medicalRecord,
+//        MedicalRecordDTO medicalRecord,
         @NotNull @NotBlank String cpf,
         @NotNull @NotBlank String password,
         @NotNull @NotBlank String phone,

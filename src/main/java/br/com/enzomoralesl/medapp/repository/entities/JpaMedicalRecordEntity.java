@@ -19,6 +19,6 @@ public class JpaMedicalRecordEntity {
     private String teste;
 
     @OneToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "patient_id", nullable = false)
     private JpaPatientEntity patient;
 }

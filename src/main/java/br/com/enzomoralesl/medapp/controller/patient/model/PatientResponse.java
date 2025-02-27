@@ -8,7 +8,6 @@ public record PatientResponse(
         UUID id,
         String email,
         String name,
-        MedicalRecordDTO medicalRecord,
         String cpf,
         String password,
         String phone,
