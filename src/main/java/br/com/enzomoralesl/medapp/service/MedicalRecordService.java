@@ -43,7 +43,7 @@ public class MedicalRecordService implements IMedicalRecordService {
     }
 
     @Override
-    public MedicalRecordResponse fetch(Map<String, String> requestMap) throws ResourceNotFoundException {
+    public MedicalRecordResponse fetch(Map<String, String> requestMap) {
         JpaMedicalRecordEntity medicalRecordEntity = medicalRecordRepository.findByPatientEmail(requestMap.get("email"))
                 .orElseThrow(() -> new ResourceNotFoundException("Medical Record not found with email " + requestMap.get("email")));
 

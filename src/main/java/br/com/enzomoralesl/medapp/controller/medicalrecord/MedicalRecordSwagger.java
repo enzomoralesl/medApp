@@ -4,7 +4,6 @@ package br.com.enzomoralesl.medapp.controller.medicalrecord;
 import br.com.enzomoralesl.medapp.controller.medicalrecord.model.MedicalRecordRequest;
 import br.com.enzomoralesl.medapp.controller.medicalrecord.model.MedicalRecordResponse;
 import br.com.enzomoralesl.medapp.infrastructure.exception.APIErrorResponse;
-import br.com.enzomoralesl.medapp.infrastructure.exception.ResourceNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -53,6 +52,6 @@ public interface MedicalRecordSwagger {
             description = "Endpoint responsible for searching a medical record"
     )
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    ResponseEntity<MedicalRecordResponse> fetchMedicalRecord(String email) throws ResourceNotFoundException;
+    ResponseEntity<MedicalRecordResponse> fetchMedicalRecord(String email);
 
 }

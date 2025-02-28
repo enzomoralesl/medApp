@@ -3,7 +3,6 @@ package br.com.enzomoralesl.medapp.controller.medicalrecord;
 
 import br.com.enzomoralesl.medapp.controller.medicalrecord.model.MedicalRecordRequest;
 import br.com.enzomoralesl.medapp.controller.medicalrecord.model.MedicalRecordResponse;
-import br.com.enzomoralesl.medapp.infrastructure.exception.ResourceNotFoundException;
 import br.com.enzomoralesl.medapp.service.IMedicalRecordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +43,7 @@ public class MedicalRecordController implements MedicalRecordSwagger {
 
     @Override
     @GetMapping("/medical-record")
-    public ResponseEntity<MedicalRecordResponse> fetchMedicalRecord(@RequestHeader String email) throws ResourceNotFoundException {
+    public ResponseEntity<MedicalRecordResponse> fetchMedicalRecord(@RequestHeader String email) {
 
         LOGGER.info("Recebendo operacao para buscar Registro Médico na base de dados...");
         Map<String, String> requestMap = Map.of(

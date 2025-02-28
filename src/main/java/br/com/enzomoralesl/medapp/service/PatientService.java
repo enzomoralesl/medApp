@@ -42,7 +42,7 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public PatientResponse fetch(Map<String, String> request) throws ResourceNotFoundException {
+    public PatientResponse fetch(Map<String, String> request) {
         JpaPatientEntity patientEntity = this.jpaPatientRepository.findByEmail(request.get("email"))
                 .orElseThrow(() -> new ResourceNotFoundException("Paciente não encontrado na base de dados"));
 

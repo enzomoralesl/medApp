@@ -30,7 +30,7 @@ public class DoctorService implements IDoctorService {
     }
 
     @Override
-    public DoctorResponse fetch(Map<String, String> request) throws ResourceNotFoundException {
+    public DoctorResponse fetch(Map<String, String> request) {
         JpaDoctorEntity doctorEntity = this.jpaDoctorRepository.findByCrm(request.get("crm"));
         if(doctorEntity == null) {
             throw new ResourceNotFoundException("Doutor não encontrado na base de dados");

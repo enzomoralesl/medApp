@@ -3,7 +3,6 @@ package br.com.enzomoralesl.medapp.controller.patient;
 
 import br.com.enzomoralesl.medapp.controller.patient.model.PatientRequest;
 import br.com.enzomoralesl.medapp.controller.patient.model.PatientResponse;
-import br.com.enzomoralesl.medapp.infrastructure.exception.ResourceNotFoundException;
 import br.com.enzomoralesl.medapp.service.IPatientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +43,7 @@ public class PatientController implements PatientSwagger {
 
     @Override
     @GetMapping("/patient")
-    public ResponseEntity<PatientResponse> fetchPatient(@RequestHeader String email) throws ResourceNotFoundException {
+    public ResponseEntity<PatientResponse> fetchPatient(@RequestHeader String email) {
 
         LOGGER.info("Recebendo operacao para buscar Patient na base de dados...");
         Map<String, String> requestMap = Map.of(
