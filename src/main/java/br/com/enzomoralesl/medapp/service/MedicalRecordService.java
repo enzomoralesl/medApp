@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+
 
 @Service
 public class MedicalRecordService implements IMedicalRecordService {
@@ -36,6 +38,14 @@ public class MedicalRecordService implements IMedicalRecordService {
         JpaMedicalRecordEntity medicalRecordEntity = mapper.toJpaMedicalRecordEntity(request, patient);
         medicalRecordRepository.save(medicalRecordEntity);
 
+
+        return new MedicalRecordResponse(medicalRecordEntity.getId(), medicalRecordEntity.getTeste(), medicalRecordEntity.getPatient().getId());
+    }
+
+    @Override
+    public MedicalRecordResponse fetch(Map<String, String> requestMap) throws ResourceNotFoundException {
+        JpaMedicalRecordEntity medicalRecordEntity = medicalRecordRepository.findByPatientEmail(requestMap.get("email"))
+                .orElseThrow(() -> new ResourceNotFoundException("Medical Record not found with email " + requestMap.get("email")));
 
         return new MedicalRecordResponse(medicalRecordEntity.getId(), medicalRecordEntity.getTeste(), medicalRecordEntity.getPatient().getId());
     }

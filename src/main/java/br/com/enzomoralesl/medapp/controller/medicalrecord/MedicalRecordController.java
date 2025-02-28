@@ -3,19 +3,18 @@ package br.com.enzomoralesl.medapp.controller.medicalrecord;
 
 import br.com.enzomoralesl.medapp.controller.medicalrecord.model.MedicalRecordRequest;
 import br.com.enzomoralesl.medapp.controller.medicalrecord.model.MedicalRecordResponse;
+import br.com.enzomoralesl.medapp.infrastructure.exception.ResourceNotFoundException;
 import br.com.enzomoralesl.medapp.service.IMedicalRecordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/v1", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,7 +42,7 @@ public class MedicalRecordController implements MedicalRecordSwagger {
         return ResponseEntity.created(uri).body(response);
     }
 
-/*    @Override
+    @Override
     @GetMapping("/medical-record")
     public ResponseEntity<MedicalRecordResponse> fetchMedicalRecord(@RequestHeader String email) throws ResourceNotFoundException {
 
@@ -53,6 +52,6 @@ public class MedicalRecordController implements MedicalRecordSwagger {
         );
 
         return ResponseEntity.ok(medicalRecordService.fetch(requestMap));
-    }*/
+    }
 
 }
