@@ -4,6 +4,7 @@ package br.com.enzomoralesl.medapp.controller.patient;
 import br.com.enzomoralesl.medapp.controller.patient.model.PatientRequest;
 import br.com.enzomoralesl.medapp.controller.patient.model.PatientResponse;
 import br.com.enzomoralesl.medapp.service.IPatientService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,10 +32,11 @@ public class PatientController implements PatientSwagger {
 
     @Override
     @PostMapping(value = "/patient", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PatientResponse> createPatient(@RequestBody PatientRequest request, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<PatientResponse> createPatient(@RequestBody @Valid PatientRequest request, UriComponentsBuilder uriBuilder) {
 
         LOGGER.info("Recebendo operacao para criar Paciente na base de dados...");
         PatientResponse response = patientService.save(request);
+
 
         URI uri = uriBuilder.path(urlBase + "/v1/{id}").buildAndExpand(response.id()).toUri();
         LOGGER.info("Paciente criado com sucesso!");

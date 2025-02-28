@@ -4,6 +4,7 @@ package br.com.enzomoralesl.medapp.controller.medicalrecord;
 import br.com.enzomoralesl.medapp.controller.medicalrecord.model.MedicalRecordRequest;
 import br.com.enzomoralesl.medapp.controller.medicalrecord.model.MedicalRecordResponse;
 import br.com.enzomoralesl.medapp.service.IMedicalRecordService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +32,7 @@ public class MedicalRecordController implements MedicalRecordSwagger {
 
     @Override
     @PostMapping(value = "/medical-record", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MedicalRecordResponse> createMedicalRecord(@RequestBody MedicalRecordRequest request, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<MedicalRecordResponse> createMedicalRecord(@RequestBody @Valid MedicalRecordRequest request, UriComponentsBuilder uriBuilder) {
 
         LOGGER.info("Recebendo operacao para criar Registro Médico na base de dados...");
         MedicalRecordResponse response = medicalRecordService.save(request);

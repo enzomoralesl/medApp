@@ -5,6 +5,6 @@ import jakarta.validation.constraints.NotNull;
 
 public record MedicalRecordRequest(
         @NotNull @NotBlank String emailPatient,
-        @NotNull @NotBlank String teste
+        String teste
 ) {
 }

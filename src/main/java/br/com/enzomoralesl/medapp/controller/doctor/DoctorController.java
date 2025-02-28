@@ -4,6 +4,7 @@ package br.com.enzomoralesl.medapp.controller.doctor;
 import br.com.enzomoralesl.medapp.controller.doctor.model.DoctorRequest;
 import br.com.enzomoralesl.medapp.controller.doctor.model.DoctorResponse;
 import br.com.enzomoralesl.medapp.service.IDoctorService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +32,7 @@ public class DoctorController implements DoctorSwagger {
 
     @Override
     @PostMapping(value = "/doctor")
-    public ResponseEntity<DoctorResponse> createDoctor(@RequestBody DoctorRequest request, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DoctorResponse> createDoctor(@RequestBody @Valid DoctorRequest request, UriComponentsBuilder uriBuilder) {
 
         LOGGER.info("Recebendo operacao para criar Doutor na base de dados...");
         DoctorResponse response = doctorService.save(request);
