@@ -1,7 +1,5 @@
 package br.com.enzomoralesl.medapp.controller.patient.model;
 
-import br.com.enzomoralesl.medapp.DTOs.MedicalRecordDTO;
-
 import java.util.UUID;
 
 public record PatientResponse(

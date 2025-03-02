@@ -13,12 +13,11 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JpaDoctorEntity {
+public class JPADoctorEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	private String crm;
 	private String name;
 	private String specialty;
-
 }

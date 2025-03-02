@@ -1,16 +1,20 @@
 package br.com.enzomoralesl.medapp.DTOs;
 
+import br.com.enzomoralesl.medapp.DTOs.medicalrecords.SurgeryDTO;
+import br.com.enzomoralesl.medapp.DTOs.medicalrecords.ConsultationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 public class MedicalRecordDTO {
 
     //general medical appointments
-    //List<CirurgyDTO> cirurgies;
-    //List<ConsultationDTO> consultations;
-    private String teste;
+    private List<SurgeryDTO> surgeries;
+    private List<ConsultationDTO> consultations;
+
     /*
     //tests
     List<Exam> exams;

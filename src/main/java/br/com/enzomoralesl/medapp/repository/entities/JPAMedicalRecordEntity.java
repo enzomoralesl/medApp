@@ -12,13 +12,15 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JpaMedicalRecordEntity {
+public class JPAMedicalRecordEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String teste;
+
+    //@OneToMany(mappedBy = "medical_record", cascade = CascadeType.ALL)
+    //private List<JPASurgeryEntity> surgeries;
 
     @OneToOne
     @JoinColumn(name = "patient_id", nullable = false)
-    private JpaPatientEntity patient;
+    private JPAPatientEntity patient;
 }

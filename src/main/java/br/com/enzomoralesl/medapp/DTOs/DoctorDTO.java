@@ -1,7 +1,7 @@
 package br.com.enzomoralesl.medapp.DTOs;
 
 
-import br.com.enzomoralesl.medapp.repository.entities.JpaDoctorEntity;
+import br.com.enzomoralesl.medapp.repository.entities.JPADoctorEntity;
 
 import java.util.UUID;
 
@@ -53,7 +53,7 @@ public class DoctorDTO {
     }
 
 
-    public JpaDoctorEntity toDoctorEntity() {
-        return new JpaDoctorEntity(this.id, this.name, this.specialty, this.crm);
+    public JPADoctorEntity toDoctorEntity() {
+        return new JPADoctorEntity(this.id, this.name, this.specialty, this.crm);
     }
 }

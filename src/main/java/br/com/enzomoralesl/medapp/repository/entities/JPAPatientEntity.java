@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JpaPatientEntity {
+public class JPAPatientEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
@@ -24,6 +24,6 @@ public class JpaPatientEntity {
 	private String phone;
 	private String birthDate;
 
-	@OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-	private JpaMedicalRecordEntity medicalRecord;
+//	@OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private JPAMedicalRecordEntity medicalRecord;
 }

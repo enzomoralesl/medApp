@@ -1,20 +1,16 @@
 package br.com.enzomoralesl.medapp.utils.mapper;
 
-import br.com.enzomoralesl.medapp.DTOs.MedicalRecordDTO;
 import br.com.enzomoralesl.medapp.controller.patient.model.PatientRequest;
-import br.com.enzomoralesl.medapp.repository.entities.JpaMedicalRecordEntity;
-import br.com.enzomoralesl.medapp.repository.entities.JpaPatientEntity;
+import br.com.enzomoralesl.medapp.repository.entities.JPAPatientEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface IPatientMapper {
 
 //    @Mapping(source = "medicalRecord", target = "medicalRecord")
-    JpaPatientEntity toJpaPatientEntity(PatientRequest patientRequest);
+    JPAPatientEntity toJPAPatientEntity(PatientRequest patientRequest);
 
-    @Mapping(source = "teste", target = "teste")
-    JpaMedicalRecordEntity medicalRecordDTOToJpaMedicalRecordEntity(MedicalRecordDTO medicalRecordDTO);
+//    JPAMedicalRecordEntity medicalRecordDTOToJPAMedicalRecordEntity(MedicalRecordDTO medicalRecordDTO);
 
-    MedicalRecordDTO toMedicalRecordDTO(JpaMedicalRecordEntity jpaPatientEntity);
+//    MedicalRecordDTO toMedicalRecordDTO(JPAMedicalRecordEntity jpaPatientEntity);
 }
