@@ -14,14 +14,11 @@ import java.util.Map;
 @Service
 public class PatientService implements IPatientService {
 
-    private final IMedicalRecordService medicalRecordService;
     private final IJPAPatientRepository jpaPatientRepository;
     private final IPatientMapper mapper;
 
-    public PatientService(IMedicalRecordService medicalRecordService,
-                          IJPAPatientRepository jpaPatientRepository,
+    public PatientService(IJPAPatientRepository jpaPatientRepository,
                           @Qualifier("IPatientMapperImpl") IPatientMapper mapper) {
-        this.medicalRecordService = medicalRecordService;
         this.jpaPatientRepository = jpaPatientRepository;
         this.mapper = mapper;
     }

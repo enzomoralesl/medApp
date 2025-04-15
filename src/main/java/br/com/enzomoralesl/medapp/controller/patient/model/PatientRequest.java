@@ -1,6 +1,5 @@
 package br.com.enzomoralesl.medapp.controller.patient.model;
 
-import br.com.enzomoralesl.medapp.DTOs.MedicalRecordDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
