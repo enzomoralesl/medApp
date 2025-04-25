@@ -13,6 +13,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @Tag(name = "Patient Endpoint", description = "Operation to create a new Patient")
 @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Criação realizada com sucesso", content = {
@@ -52,6 +54,30 @@ public interface PatientSwagger {
             description = "Endpoint responsible for searching a patient"
     )
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    ResponseEntity<PatientResponse> fetchPatient(String crm);
+    ResponseEntity<PatientResponse> fetchPatient(String email);
+
+    @Operation(
+            operationId = "updatePatient",
+            summary = "Endpoint responsible for updating a patient",
+            description = "Endpoint responsible for updating a patient"
+    )
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    ResponseEntity<PatientResponse> updatePatient(String email, PatientRequest request);
+
+    @Operation(
+            operationId = "deletePatient",
+            summary = "Endpoint responsible for deleting a patient",
+            description = "Endpoint responsible for deleting a patient"
+    )
+    @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "NO_CONTENT")})
+    ResponseEntity<Void> deletePatient(String email);
+
+    @Operation(
+            operationId = "getAllPatients",
+            summary = "Endpoint responsible for getting all patients",
+            description = "Endpoint responsible for getting all patients"
+    )
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    ResponseEntity<List<PatientResponse>> getAllPatients();
 
 }

@@ -8,15 +8,10 @@ CREATE TABLE IF NOT EXISTS tb_patient (
                                           name VARCHAR(255) NOT NULL,
                                           cpf VARCHAR(11) UNIQUE NOT NULL,
                                           password VARCHAR(255) NOT NULL,
-                                          phone VARCHAR(15),
-                                          birth_date DATE
+                                          phone VARCHAR(50),
+                                          birth_date VARCHAR(15)
 );
 
--- Create tb_medical_record table
-CREATE TABLE IF NOT EXISTS tb_medical_record (
-                                                 id UUID PRIMARY KEY,
-                                                 patient_id UUID REFERENCES tb_patient(id)
-);
 
 -- Create tb_doctor table
 CREATE TABLE IF NOT EXISTS tb_doctor (
@@ -24,15 +19,4 @@ CREATE TABLE IF NOT EXISTS tb_doctor (
                                          name VARCHAR(255) NOT NULL,
                                          specialty VARCHAR(255) NOT NULL,
                                          crm VARCHAR(20) UNIQUE NOT NULL
-);
-
--- Create tb_surgery table
-CREATE TABLE IF NOT EXISTS tb_surgery (
-                                          id UUID PRIMARY KEY,
-                                          date DATE NOT NULL,
-                                          doctor_name VARCHAR(255) NOT NULL,
-                                          doctorcrm VARCHAR(20) NOT NULL,
-                                          description TEXT,
-                                          type VARCHAR(50),
-                                          medical_record_id UUID REFERENCES tb_medical_record(id)
 );
