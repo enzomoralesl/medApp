@@ -30,6 +30,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     public static final String ERROR_HEADER_REQUIRED = "Header de entrada obrigatório";
     public static final String ERROR_CRM_DUPLICATED = "CRM já cadastrado";
+    public static final String ERROR_CPF_DUPLICATED = "CPF já cadastrado";
     public static final String  ERROR_EMAIL_DUPLICATED = "Email já cadastrado";
     public static final String ERROR_VALUE_DUPLICATED = "Existe algum valor já cadastrado";
 
@@ -50,11 +51,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
-        if(ex.getMessage().contains("duplicar valor da chave viola a restrição de unicidade")) {
+        if(ex.getMessage().contains("duplicate key value violates unique constraint")) {
             if(ex.getMessage().contains("tb_patient_email_key"))
                 return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_EMAIL_DUPLICATED, ex), ex);
-            if(ex.getMessage().contains("tb_doctor_crm_key"))
-                return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_CRM_DUPLICATED, ex), ex);
+            if(ex.getMessage().contains("tb_patient_cpf_key"))
+                return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_CPF_DUPLICATED, ex), ex);
             return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_VALUE_DUPLICATED, ex), ex);
         }
         return buildAPIResponseError(new APIErrorResponse(INTERNAL_SERVER_ERROR, ERROR_INTEGRITY_VIOLATION, ex), ex);

@@ -8,7 +8,12 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 
-@Table(name = "tb_patient", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(
+	name = "tb_patient",
+	uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"email", "cpf"})
+	}
+)
 @Entity
 @Data
 @NoArgsConstructor
