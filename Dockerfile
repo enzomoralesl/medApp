@@ -7,7 +7,7 @@ WORKDIR /ap
 COPY target/*.jar app.jar
 
 # Expõe a porta usada pela aplicação
-EXPOSE 8080
+EXPOSE 8081
 
 # Define o comando para executar o aplicativo
 ENTRYPOINT ["java", "-jar", "app.jar"]
