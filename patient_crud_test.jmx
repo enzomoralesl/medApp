@@ -22,13 +22,11 @@
           </elementProp>
           <elementProp name="email1" elementType="Argument">
             <stringProp name="Argument.name">email1</stringProp>
-            <stringProp name="Argument.value">enzo.moralesl@example.com</stringProp>
+            <stringProp name="Argument.value">enzo.moralesl@gmail.com</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Patient CRUD Thread Group">
@@ -54,7 +52,7 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;email&quot;: &quot;enzo.moralesl@example.com&quot;,&#xd;
+	&quot;email&quot;: &quot;enzo.moralesl@gmail.com&quot;,&#xd;
 	&quot;name&quot;: &quot;Enzo Morales&quot;,&#xd;
 	&quot;cpf&quot;: &quot;4760679511&quot;,&#xd;
 	&quot;password&quot;: &quot;securePassword123&quot;,&#xd;
@@ -67,7 +65,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">content-type</stringProp>
@@ -109,7 +107,7 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;email&quot;: &quot;enzo.moralesl@example.com&quot;,&#xd;
+	&quot;email&quot;: &quot;enzo.moralesl@gmail.com&quot;,&#xd;
 	&quot;name&quot;: &quot;Enzo Morales Leitao&quot;,&#xd;
 	&quot;cpf&quot;: &quot;4760679511&quot;,&#xd;
 	&quot;password&quot;: &quot;securePassword123&quot;,&#xd;
@@ -132,7 +130,7 @@
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Patient" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Patient">
           <stringProp name="HTTPSampler.domain">${baseUrl}</stringProp>
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.path">${path}/${email1}</stringProp>
@@ -143,7 +141,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">content-type</stringProp>
@@ -153,7 +151,7 @@
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="List Patients" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="List Patients">
           <stringProp name="HTTPSampler.domain">${baseUrl}</stringProp>
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.path">${path}</stringProp>
