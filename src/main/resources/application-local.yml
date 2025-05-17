@@ -18,13 +18,7 @@ spring:
       ddl-auto: none
     show-sql: true
     properties:
+      javax.persistence.schema-generation.database.action: none
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-  sql:
-    init:
-      schema-locations: classpath:/schema.sql
-      data-locations: classpath:/data.sql
-      mode: always
-
-
-urlbase: http://localhost:8081
+    generate-ddl: false
