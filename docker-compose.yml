@@ -1,22 +1,21 @@
 services:
-#  app:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8081:8081"
-#    volumes:
-#      - .:/app
-#    depends_on:
-#      - db
-#      - rabbitmq
-#    environment:
-#      SPRING_PROFILES_ACTIVE: docker
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
-#      SPRING_DATASOURCE_USERNAME: user
-#      SPRING_DATASOURCE_PASSWORD: 12345
-#      SPRING_RABBITMQ_HOST: rabbitmq
-#      SPRING_RABBITMQ_PORT: 5672
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./target:/app/target # Monta o diretório target para o JAR
+      - ./src/main/resources:/app/resources # Monta o diretório resources para o schema.sql
+      - ./entrypoint.sh:/app/entrypoint.sh # Monta o entrypoint.sh
+    depends_on:
+      - db
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres #5432 é a porta no container que o java do container acessa
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: 12345
 
   db:
     image: postgres:15
@@ -31,15 +30,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-#  rabbitmq:
-#    image: rabbitmq:3-management
-#    container_name: rabbitmq
-#    ports:
-#      - "5672:5672" # Porta para comunicação AMQP
-#      - "15672:15672" # Porta para acessar o painel de gerenciamento
-#    environment:
-#      RABBITMQ_DEFAULT_USER: user
-#      RABBITMQ_DEFAULT_PASS: 12345
   pgadmin:
     image: dpage/pgadmin4
     container_name: pg-admin
