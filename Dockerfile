@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/ap
 WORKDIR /app
 
 # Copie o arquivo JAR gerado para o container
-COPY target/*.jar app.jar
+COPY target/*.jar /app/app.jar
 
 # Copie o schema.sql e o entrypoint.sh para o container
 COPY src/main/resources/schema.sql /app/schema.sql
