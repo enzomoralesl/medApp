@@ -1,4 +1,4 @@
-package br.com.enzomoralesl.medapp.infrastructure.config.exception;
+package br.com.enzomoralesl.medapp.infrastructure.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
