@@ -1,30 +1,27 @@
 {
   "name": "TCC Performance Comparison Environment",
-  "image": "mcr.microsoft.com/devcontainers/universal:latest", // Imagem base universal com muitas ferramentas
+  "image": "mcr.microsoft.com/devcontainers/universal:latest",
   "features": {
-    // Feature para habilitar o Docker dentro do Codespace (Docker-in-Docker)
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "version": "latest",
       "enableNonRoot": "true",
       "moby": "true"
     },
-    // Feature para instalar o Java Development Kit (JDK) versão 17
     "ghcr.io/devcontainers/features/java:1": {
-      "version": "17" // Especifica a versão 17 do Java
+      "version": "17"
     }
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-azuretools.vscode-docker",     // Extensão para Docker no VS Code
-        "redhat.vscode-yaml",               // Extensão para arquivos YAML (útil para docker-compose)
-        "vscjava.vscode-java-pack"          // Pacote de extensões Java para VS Code
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "vscjava.vscode-java-pack"
       ]
     }
   },
-  // Portas que serão expostas e forwardeadas para o seu ambiente local
-  "forwardPorts": [8080, 8000, 5432, 9090, 3000],
-  // Comandos a serem executados após a criação do Codespace
-  "postCreateCommand": "sudo apt update && sudo apt install -y git maven gradle", // Instala Git, Maven e Gradle (se você usa algum deles)
-  "remoteUser": "codespace" // Usuário padrão dentro do Codespace
+  "forwardPorts": [8080, 8081, 5432, 9090, 3000],
+
+  "postCreateCommand": "sudo apt update && sudo apt install -y git maven gradle",
+  "remoteUser": "codespace"
 }
