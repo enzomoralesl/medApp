@@ -7,11 +7,8 @@
       "enableNonRoot": "true",
       "moby": "true"
     },
-    "features": {
-      // ... outras features
-      "ghcr.io/devcontainers/features/java:1": {
-        "version": "17" // Isso instala Java 17 no Codespace
-      }
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17" // Isso instala Java 17 no Codespace
     }
   },
   "customizations": {
