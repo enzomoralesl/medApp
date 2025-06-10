@@ -1,0 +1,28 @@
+{
+  "name": "TCC Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:latest", // Imagem com muitas ferramentas pré-instaladas
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": { // Docker dentro do Codespace (Dind)
+      "version": "latest",
+      "enableNonRoot": "true",
+      "moby": "true"
+    },
+    "features": {
+      // ... outras features
+      "ghcr.io/devcontainers/features/java:1": {
+        "version": "17" // Isso instala Java 17 no Codespace
+      }
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+  "forwardPorts": [8080, 8081, 5432, 16543], // Portas dos seus apps, DB e monitoramento
+  "postCreateCommand": "sudo apt update && sudo apt install -y git", // Comando para rodar após criar (ex: garantir git)
+  "remoteUser": "codespace" // Usuário padrão
+}
