@@ -1,0 +1,27 @@
+{
+  "name": "TCC Performance Comparison Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRoot": "true",
+      "moby": "true"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "vscjava.vscode-java-pack"
+      ]
+    }
+  },
+  "forwardPorts": [8080, 8081, 5432, 9090, 3000],
+
+  "postCreateCommand": "sudo apt update && sudo apt install -y git maven gradle",
+  "remoteUser": "codespace"
+}
