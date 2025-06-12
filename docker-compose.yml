@@ -74,6 +74,8 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
   grafana:
+    networks:
+      - app-network
     image: grafana/grafana:latest
     container_name: grafana
     ports:
