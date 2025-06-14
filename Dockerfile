@@ -1,3 +1,9 @@
+FROM maven:3.8-openjdk-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
 FROM openjdk:17-jdk-slim
 
 # Instala utilitários necessários
@@ -6,18 +12,11 @@ RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/ap
 # Define o diretório de trabalho no container
 WORKDIR /app
 
-# Copie o arquivo JAR gerado para o container
-COPY target/*.jar /app/app.jar
-
-# Copie o schema.sql e o entrypoint.sh para o container
+COPY --from=build /app/target/*.jar /app/app.jar
 COPY src/main/resources/schema.sql /app/schema.sql
 COPY entrypoint.sh /app/entrypoint.sh
 
-# Permite execução do entrypoint
+
 RUN chmod +x /app/entrypoint.sh
-
-# Expõe a porta usada pela aplicação
 EXPOSE 8081
-
-# Define o entrypoint customizado
 ENTRYPOINT ["/app/entrypoint.sh"]
