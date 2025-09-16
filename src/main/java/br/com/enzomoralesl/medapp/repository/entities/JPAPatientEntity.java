@@ -11,8 +11,7 @@ import java.util.UUID;
 @Table(
 	name = "tb_patient",
 	uniqueConstraints = {
-		@UniqueConstraint(name = "tb_patient_email_key", columnNames = {"email"}),
-		@UniqueConstraint(name = "tb_patient_cpf_key", columnNames = {"cpf"})
+		@UniqueConstraint(name = "tb_patient_email_key", columnNames = {"email"})
 	}
 )
 @Entity

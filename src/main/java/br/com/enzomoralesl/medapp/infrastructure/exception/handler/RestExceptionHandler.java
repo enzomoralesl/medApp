@@ -2,14 +2,12 @@ package br.com.enzomoralesl.medapp.infrastructure.exception.handler;
 
 import br.com.enzomoralesl.medapp.infrastructure.exception.APIErrorResponse;
 import br.com.enzomoralesl.medapp.infrastructure.exception.ResourceNotFoundException;
-import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.Objects;
-
 import static org.springframework.http.HttpStatus.*;
 
 
@@ -29,7 +25,6 @@ import static org.springframework.http.HttpStatus.*;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     public static final String ERROR_HEADER_REQUIRED = "Header de entrada obrigatório";
-    public static final String ERROR_CRM_DUPLICATED = "CRM já cadastrado";
     public static final String ERROR_CPF_DUPLICATED = "CPF já cadastrado";
     public static final String  ERROR_EMAIL_DUPLICATED = "Email já cadastrado";
     public static final String ERROR_VALUE_DUPLICATED = "Existe algum valor já cadastrado";
@@ -37,12 +32,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public static final String ERROR_INTEGRITY_VIOLATION = "Erro de violação de integridade na base de dados";
     private static final Logger LOGGER_TECNICO = LoggerFactory.getLogger(RestExceptionHandler.class);
 
-    @ExceptionHandler(FeignException.class)
-    public ResponseEntity<Object> handleFeignException(FeignException ex) {
-        var apiErro = new APIErrorResponse(Objects.requireNonNull(HttpStatus.resolve(ex.status())), ex);
-        apiErro.setErrorDetails(ex.getMessage());
-        return buildAPIResponseError(apiErro, ex);
-    }
     
     @ExceptionHandler(MissingRequestHeaderException.class)
     public ResponseEntity<Object> handleMissingRequestHeaderException(MissingRequestHeaderException ex) {

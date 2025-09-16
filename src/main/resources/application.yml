@@ -5,6 +5,7 @@ spring:
   application:
     name: medApp
   jpa:
+    #defer-datasource-initialization: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
@@ -16,7 +17,7 @@ spring:
     init:
       schema-locations: classpath:/schema.sql
       data-locations: classpath:/data.sql
-      mode: always
-
+      mode: always # injecao do data.sql
+      #mode: never
 
 urlbase: http://localhost:8081

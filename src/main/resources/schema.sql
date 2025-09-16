@@ -10,6 +10,5 @@ CREATE TABLE IF NOT EXISTS tb_patient (
                                           password VARCHAR(255) NOT NULL,
                                           phone VARCHAR(50),
                                           birth_date VARCHAR(15),
-                                          CONSTRAINT tb_patient_email_key UNIQUE (email),
-                                          CONSTRAINT tb_patient_cpf_key UNIQUE (cpf)
+                                          CONSTRAINT tb_patient_email_key UNIQUE (email)
 );
