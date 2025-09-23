@@ -1,7 +1,7 @@
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
--- Create tb_patient table
+
 CREATE TABLE IF NOT EXISTS tb_patient (
                                           id UUID PRIMARY KEY,
                                           email VARCHAR(255) NOT NULL,
